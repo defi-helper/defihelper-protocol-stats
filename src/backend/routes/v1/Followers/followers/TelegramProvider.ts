@@ -1,12 +1,12 @@
 import SocialNetworkFollowersProvider, {SocialNetworkEntityDefault} from "./type/SocialNetworkFollowersProvider";
 import TelegramBot from 'node-telegram-bot-api';
+import ConfigManager from "../../../../shared/ConfigManager";
 
 export default class implements SocialNetworkFollowersProvider {
   async get(id: string | number): Promise<SocialNetworkEntityDefault> {
     const telegramBot =
       new TelegramBot(
-        '1223767470:AAGRIHH6OkJd2unqkMTUe7v3GPOoPsWwZ1Y',
-        {polling: false}
+        ConfigManager.get('TELEGRAM_BOT_TOKEN'), {polling: false}
       )
     ;
 
