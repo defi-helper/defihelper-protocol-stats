@@ -9,7 +9,7 @@ export default class implements CoinDetailsProvider {
     try {
       coinOverviewRawHtml =
         (await axios.get(providersCoinPageUrl)).data as string;
-    } catch (e) {
+    } catch {
       return {
         watchers: 0,
         price: 0,
