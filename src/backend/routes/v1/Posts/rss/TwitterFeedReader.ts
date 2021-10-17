@@ -1,5 +1,5 @@
-import RssFeedReaderDefault from "./type/RssFeedReader";
-import {RssPostDefault, RssPostSocialNetworks} from "./type/RssPost";
+import RssFeedReaderDefault from './type/RssFeedReader';
+import {RssPostDefault, RssPostSocialNetworks} from './type/RssPost';
 import Parser from 'rss-parser';
 
 export default class implements RssFeedReaderDefault {

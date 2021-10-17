@@ -1,9 +1,9 @@
 import StatusCodes from 'http-status-codes';
 import {URL} from 'url';
 import { Request, Response } from 'express';
-import CoinMarketCapProvider from "./coins/CoinMarketCapProvider";
-import CoinGeckoProvider from "./coins/CoingeckoProvider";
-import ApiV1BadRequestException from "../../../shared/exceptions/ApiV1BadRequestException";
+import CoinMarketCapProvider from './coins/CoinMarketCapProvider';
+import CoinGeckoProvider from './coins/CoingeckoProvider';
+import ApiV1BadRequestException from '../../../shared/exceptions/ApiV1BadRequestException';
 const { OK } = StatusCodes;
 
 export default async (req: Request, res: Response) => {

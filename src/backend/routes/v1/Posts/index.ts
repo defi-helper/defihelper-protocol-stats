@@ -1,9 +1,9 @@
 import StatusCodes from 'http-status-codes';
 import { Request, Response } from 'express';
-import TwitterFeedReader from "./rss/TwitterFeedReader";
-import MediumFeedReader from "./rss/MediumFeedReader";
-import {URL} from "url";
-import ApiV1BadRequestException from "../../../shared/exceptions/ApiV1BadRequestException";
+import TwitterFeedReader from './rss/TwitterFeedReader';
+import MediumFeedReader from './rss/MediumFeedReader';
+import {URL} from 'url';
+import ApiV1BadRequestException from '../../../shared/exceptions/ApiV1BadRequestException';
 const { OK } = StatusCodes;
 
 export default async (req: Request, res: Response) => {

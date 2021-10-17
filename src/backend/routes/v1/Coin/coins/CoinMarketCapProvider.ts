@@ -1,6 +1,6 @@
-import CoinDetailsProvider from "./type/CoinDetailsProvider";
-import {CoinDefault} from "./type/Coin";
-import axios from "axios";
+import CoinDetailsProvider from './type/CoinDetailsProvider';
+import {CoinDefault} from './type/Coin';
+import axios from 'axios';
 import cheerio from 'cheerio';
 
 export default class implements CoinDetailsProvider {
