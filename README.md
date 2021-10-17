@@ -1,7 +1,7 @@
 # protocol-stats
 
 ## Install
-1. `cp ./.env.dist ./env`
+1. `cp ./.env.dist ./.env`
 2. `npm i`
 3. `npm run build`
 
