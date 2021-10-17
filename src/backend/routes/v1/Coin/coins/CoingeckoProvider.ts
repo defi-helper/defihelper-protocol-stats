@@ -5,8 +5,9 @@ import cheerio from 'cheerio';
 
 export default class implements CoinDetailsProvider {
   async get(providersCoinPageUrl: string): Promise<CoinDefault> {
+    let coinOverviewRawHtml = '';
     try {
-      const coinOverviewRawHtml =
+      coinOverviewRawHtml =
         (await axios.get(providersCoinPageUrl)).data as string;
     } catch (e) {
       return {
@@ -16,8 +17,6 @@ export default class implements CoinDetailsProvider {
       }
     }
 
-    const coinOverviewRawHtml =
-      (await axios.get(providersCoinPageUrl)).data as string;
 
     let $ = cheerio.load(coinOverviewRawHtml);
     const watchersHtmlNode = $('div:contains("people like this")').last();
