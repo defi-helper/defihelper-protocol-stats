@@ -14,11 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const http_status_codes_1 = __importDefault(require("http-status-codes"));
 const TelegramProvider_1 = __importDefault(require("./followers/TelegramProvider"));
-const { BAD_REQUEST, CREATED, OK } = http_status_codes_1.default;
+const ConfigManager_1 = __importDefault(require("../../../shared/ConfigManager"));
+const { OK } = http_status_codes_1.default;
 exports.default = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return res
         .status(OK)
         .json({
-        telegram: yield (new TelegramProvider_1.default()).get('forbesrussia')
+        telegram: yield (new TelegramProvider_1.default()).get(ConfigManager_1.default.get('TELEGRAM_CHANNEL_USERNAME'))
     });
 });

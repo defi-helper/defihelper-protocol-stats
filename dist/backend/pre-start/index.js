@@ -12,7 +12,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 (() => {
     // Set the env file
     const result2 = dotenv_1.default.config({
-        path: path_1.default.join(__dirname, `env/.env`),
+        path: path_1.default.join(__dirname, `../../../.env`),
     });
     if (result2.error) {
         throw result2.error;

@@ -16,10 +16,11 @@ logger.timestamp = false;
         // Remove current build
         await remove('./dist/');
         // Copy front-end files
-        await copy('./src/backend/public', './dist/public');
+
+        // todo await copy('./src/backend/public', './dist/public');
         await copy('./src/backend/views', './dist/views');
         // Copy production env file
-        await copy('./src/backend/pre-start/env/.env', './dist/pre-start/env/.env');
+        await copy('./.env', './dist/.env');
         // Copy back-end files
         await exec('tsc --build tsconfig.prod.json', './')
     } catch (err) {

@@ -15,10 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const http_status_codes_1 = __importDefault(require("http-status-codes"));
 const TwitterFeedReader_1 = __importDefault(require("./rss/TwitterFeedReader"));
 const MediumFeedReader_1 = __importDefault(require("./rss/MediumFeedReader"));
-const { BAD_REQUEST, CREATED, OK } = http_status_codes_1.default;
+const ConfigManager_1 = __importDefault(require("../../../shared/ConfigManager"));
+const { OK } = http_status_codes_1.default;
 exports.default = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const twitterPosts = yield (new TwitterFeedReader_1.default()).read('https://rss.app/feeds/16mc8dXw4wDlWdOQ.xml');
-    const mediumPosts = yield (new MediumFeedReader_1.default()).read('https://bondappetit.medium.com/feed');
+    const twitterPosts = yield (new TwitterFeedReader_1.default()).read(ConfigManager_1.default.get('TWITTER_RSS_FEED'));
+    const mediumPosts = yield (new MediumFeedReader_1.default()).read(ConfigManager_1.default.get('MEDIUM_RSS_FEED'));
     const posts = [...twitterPosts, ...mediumPosts]
         .sort((a, b) => a.createdAt < b.createdAt ? 1 : -1);
     return res

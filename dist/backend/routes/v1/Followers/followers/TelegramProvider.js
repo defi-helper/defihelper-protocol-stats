@@ -13,10 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_telegram_bot_api_1 = __importDefault(require("node-telegram-bot-api"));
+const ConfigManager_1 = __importDefault(require("../../../../shared/ConfigManager"));
 class default_1 {
     get(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const telegramBot = new node_telegram_bot_api_1.default('1223767470:AAGRIHH6OkJd2unqkMTUe7v3GPOoPsWwZ1Y', { polling: false });
+            const telegramBot = new node_telegram_bot_api_1.default(ConfigManager_1.default.get('TELEGRAM_BOT_TOKEN'), { polling: false });
             return {
                 followers: yield telegramBot.getChatMembersCount('@' + id),
                 anotherProperty: null,

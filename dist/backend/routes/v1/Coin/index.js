@@ -14,15 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const http_status_codes_1 = __importDefault(require("http-status-codes"));
 const CoinMarketCapProvider_1 = __importDefault(require("./coins/CoinMarketCapProvider"));
+const ConfigManager_1 = __importDefault(require("../../../shared/ConfigManager"));
 const CoingeckoProvider_1 = __importDefault(require("./coins/CoingeckoProvider"));
-const { BAD_REQUEST, CREATED, OK } = http_status_codes_1.default;
+const { OK } = http_status_codes_1.default;
 exports.default = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     return res
         .status(OK)
         .json({
-        coingecko: yield (new CoingeckoProvider_1.default())
-            .get('https://coingecko.com/en/coins/waves'),
+        coinGecko: yield (new CoingeckoProvider_1.default())
+            .get(ConfigManager_1.default.get('COINGECKO_COIN_PAGE_URL')),
         coinMarketCap: yield (new CoinMarketCapProvider_1.default())
-            .get('https://coinmarketcap.com/en/currencies/waves'),
+            .get(ConfigManager_1.default.get('COINMARKETCAP_COIN_PAGE_URL')),
     });
 });

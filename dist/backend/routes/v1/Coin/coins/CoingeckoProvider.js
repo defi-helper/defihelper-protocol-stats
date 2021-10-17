@@ -17,8 +17,10 @@ const cheerio_1 = __importDefault(require("cheerio"));
 class default_1 {
     get(providersCoinPageUrl) {
         return __awaiter(this, void 0, void 0, function* () {
+            let coinOverviewRawHtml = '';
             try {
-                const coinOverviewRawHtml = (yield axios_1.default.get(providersCoinPageUrl)).data;
+                coinOverviewRawHtml =
+                    (yield axios_1.default.get(providersCoinPageUrl)).data;
             }
             catch (e) {
                 return {
@@ -27,7 +29,6 @@ class default_1 {
                     rank: 0,
                 };
             }
-            const coinOverviewRawHtml = (yield axios_1.default.get(providersCoinPageUrl)).data;
             let $ = cheerio_1.default.load(coinOverviewRawHtml);
             const watchersHtmlNode = $('div:contains("people like this")').last();
             const watchersCountInt = parseInt((watchersHtmlNode.text()).replace(/[^0-9]/g, ''));

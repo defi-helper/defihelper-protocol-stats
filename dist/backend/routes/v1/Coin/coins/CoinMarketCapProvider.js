@@ -23,7 +23,6 @@ class default_1 {
                 .find('div.namePill:contains("watchlists")').last();
             const watchersCountInt = parseInt((watchersHtmlNode.text())
                 .replace(/[^0-9]/g, ''));
-            console.log(watchersCountInt);
             return {
                 watchers: watchersCountInt,
                 price: 0,
