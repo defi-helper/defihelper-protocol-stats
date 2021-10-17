@@ -14,6 +14,15 @@
 * `npm run cli TestToolEcho`
 
 # Routes
-* `/api/v1/followers`
-* `/api/v1/coin`
-* `/api/v1/posts`
+* `GET /api/v1/followers`
+  * telegramChannel: string
+  
+
+* `GET /api/v1/coin`
+  * coinGeckoUrl: string
+  * coinMarketCapUrl: string
+  
+
+* `GET /api/v1/posts`
+  * twitterRssFeedUrl: string
+  * mediumRssFeedUrl: string
