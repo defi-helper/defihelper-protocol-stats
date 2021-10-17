@@ -4,7 +4,7 @@
   "scripts": {
     "build": "./node_modules/.bin/ts-node build.ts",
     "lint": "eslint . --ext .ts",
-    "start": "node -r module-alias/register ./dist --env=production",
+    "start": "node -r module-alias/register ./dist/backend --env=production",
     "start:dev": "nodemon",
     "cli": "node ./dist/cli",
     "cli-test": "npm run cli TestToolEcho"
