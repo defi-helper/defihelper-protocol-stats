@@ -12,3 +12,8 @@
 
 # Cli
 * `npm run cli TestToolEcho`
+
+# Routes
+* `/api/v1/followers`
+* `/api/v1/coin`
+* `/api/v1/posts`
