@@ -1,8 +1,7 @@
 import {paramMissingError} from '../constants';
 
 export default class extends Error {
-  constructor() {
-    super(paramMissingError);
-    this.name = 'ApiV1BadRequestException';
+  constructor(message: string = paramMissingError) {
+    super(message);
   }
 };
