@@ -14,9 +14,10 @@
 * `npm run cli TestToolEcho`
 
 # Routes
-* `GET /api/v1/followers`
-  * telegramChannel: string
-  
+* `GET /api/v1/follower/:provider/:username`
+  * `:provider`: `Telegram`
+  * `:username`: string, ex. `forbesrussia`, `durov`
+
 
 * `GET /api/v1/coin/:provider/:coinId`
   * `:provider`: `CoinMarketCap` or `CoinGecko`
