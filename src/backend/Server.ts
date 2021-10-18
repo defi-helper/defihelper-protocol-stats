@@ -9,9 +9,10 @@ import 'express-async-errors';
 
 import BaseRouter from './routes';
 import logger from './shared/Logger';
+import ApiV1InternalErrorException from "./shared/exceptions/ApiV1InternalErrorException";
 
 const app = express();
-const { BAD_REQUEST } = StatusCodes;
+const { BAD_REQUEST, INTERNAL_SERVER_ERROR } = StatusCodes;
 
 
 /************************************************************************************
@@ -37,8 +38,13 @@ app.use('/api', BaseRouter);
 
 // Print API errors
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     logger.err(err, true);
+
+    if(err instanceof ApiV1InternalErrorException) {
+        return res.status(INTERNAL_SERVER_ERROR).send(`${err.name}: ${err.message}`);
+    }
+
     return res.status(BAD_REQUEST).send(`${err.name}: ${err.message}`);
 });
 

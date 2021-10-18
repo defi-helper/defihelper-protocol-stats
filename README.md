@@ -18,11 +18,11 @@
   * telegramChannel: string
   
 
-* `GET /api/v1/coin`
-  * coinGeckoUrl: string
-  * coinMarketCapUrl: string
+* `GET /api/v1/coin/:provider/:coinId`
+  * `:provider`: `CoinMarketCap` or `CoinGecko`
+  * `:coinId`: string, ex. `waves`, `binance-coin`
   
 
-* `GET /api/v1/posts`
-  * twitterRssFeedUrl: string
-  * mediumRssFeedUrl: string
+* `GET /api/v1/post/:provider/:username`
+  * `:provider`: `Twitter` or `Medium`
+  * `:username`: string, ex. `bondappetit`, `drckangelo`

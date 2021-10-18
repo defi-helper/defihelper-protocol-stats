@@ -1,12 +1,15 @@
 import { Router } from 'express';
 
-import Coin from './v1/Coin';
+import { CoinGecko, CoinMarketCap } from './v1/Coin';
 import Followers from './v1/Followers';
-import Posts from './v1/Posts';
+import {Medium as PostRouteMedium} from './v1/Post';
 
 const apiV1Router = Router();
-apiV1Router.get('/coin', Coin);
-apiV1Router.get('/posts', Posts);
+
+apiV1Router.get('/coin/CoinGecko/:id', CoinGecko);
+apiV1Router.get('/coin/CoinMarketCap/:id', CoinMarketCap);
+
+apiV1Router.get('/post/Medium/:username', PostRouteMedium);
 apiV1Router.get('/followers', Followers);
 
 // Export the base-router

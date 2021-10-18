@@ -4,19 +4,14 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 
 export default class implements CoinDetailsProvider {
-  async get(providersCoinPageUrl: string): Promise<CoinDefault> {
+  async get(id: string): Promise<CoinDefault> {
     let coinOverviewRawHtml = '';
     try {
       coinOverviewRawHtml =
-        (await axios.get(providersCoinPageUrl)).data as string;
+        (await axios.get(`https://coingecko.com/en/coins/${id}`)).data as string;
     } catch {
-      return {
-        watchers: 0,
-        price: 0,
-        rank: 0,
-      }
+      throw 'Service didn\'t respond';
     }
-
 
     let $ = cheerio.load(coinOverviewRawHtml);
     const watchersHtmlNode = $('div:contains("people like this")').last();
