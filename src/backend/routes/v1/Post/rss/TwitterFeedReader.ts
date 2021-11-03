@@ -1,6 +1,6 @@
-import RssFeedReaderDefault from './type/RssFeedReader';
-import {RssPostDefault, RssPostSocialNetworks} from './type/RssPost';
-import Parser from 'rss-parser';
+import RssFeedReaderDefault from "./type/RssFeedReader";
+import { RssPostDefault, RssPostSocialNetworks } from "./type/RssPost";
+import Parser from "rss-parser";
 import axios from "axios";
 import ConfigManager from "../../../../shared/ConfigManager";
 
@@ -9,16 +9,19 @@ interface RssFeedItem {
   rss_url: string;
 }
 export default class implements RssFeedReaderDefault {
-  private async fetchRssApiRequest(method: string, paramsList?: { [key: string]: string|number }): Promise<any> {
-    const requestUrl = 'https://fetchrss.com/api/v1/' + method;
+  private async fetchRssApiRequest(
+    method: string,
+    paramsList?: { [key: string]: string | number }
+  ): Promise<any> {
+    const requestUrl = "https://fetchrss.com/api/v1/" + method;
     const params = {
       ...paramsList,
-      auth: ConfigManager.get('FETCH_RSS_COM_TOKEN')
+      auth: ConfigManager.get("FETCH_RSS_COM_TOKEN"),
     };
 
-    const response: any = (await axios.get(requestUrl, {params})).data;
-    if(response.success !== true) {
-      throw 'fetchrss.com: unsuccessful';
+    const response: any = (await axios.get(requestUrl, { params })).data;
+    if (response.success !== true) {
+      throw "fetchrss.com: unsuccessful";
     }
 
     return response;
@@ -27,37 +30,46 @@ export default class implements RssFeedReaderDefault {
   private async fetchFeedRssUrl(username: string): Promise<string> {
     // encode to hex for more safety for little-known chars
     const feedName = Buffer.from(
-      `${RssPostSocialNetworks.twitter}:${username}`, 'utf8'
-    ).toString('hex');
+      `${RssPostSocialNetworks.twitter}:${username}`,
+      "utf8"
+    ).toString("hex");
 
-    const availableFeeds: RssFeedItem[] = (await this.fetchRssApiRequest('feed/list')).feeds;
-    let existingFeed: RssFeedItem|undefined = availableFeeds.find(v => v.title === feedName);
+    const availableFeeds: RssFeedItem[] = (
+      await this.fetchRssApiRequest("feed/list")
+    ).feeds;
+    let existingFeed: RssFeedItem | undefined = availableFeeds.find(
+      (v) => v.title === feedName
+    );
 
     // create new feed if it doesn't exists
-    if(!existingFeed) {
-      existingFeed = (await this.fetchRssApiRequest('feed/create', {
-        'items-per-rss': 25,
-        'url': 'https://twitter.com/'+username,
-        'title': feedName,
-      })).feed as RssFeedItem;
+    if (!existingFeed) {
+      existingFeed = (
+        await this.fetchRssApiRequest("feed/create", {
+          "items-per-rss": 25,
+          url: "https://twitter.com/" + username,
+          title: feedName,
+        })
+      ).feed as RssFeedItem;
     }
 
-    return existingFeed.rss_url
+    return existingFeed.rss_url;
   }
 
   async read(username: string): Promise<RssPostDefault[]> {
     const parser: Parser = new Parser();
-    const fetchFeedRssUrlByTwitterUsername = await this.fetchFeedRssUrl(username);
+    const fetchFeedRssUrlByTwitterUsername = await this.fetchFeedRssUrl(
+      username
+    );
 
     const feed = await parser.parseURL(fetchFeedRssUrlByTwitterUsername);
-    return feed.items.map(v => {
+    return feed.items.map((v) => {
       return {
         socialNetwork: RssPostSocialNetworks.twitter,
         title: v.title,
         text: v.content,
         ownerUsername: v.creator,
         link: v.link,
-        createdAt: Date.parse(v.pubDate as string),
+        createdAt: Math.floor(Date.parse(v.pubDate as string) / 1000),
       } as RssPostDefault;
     });
   }
