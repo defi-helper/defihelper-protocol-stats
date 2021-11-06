@@ -2,7 +2,6 @@ import StatusCodes from "http-status-codes";
 import { Request, Response } from "express";
 import TwitterFeedReader from "./rss/TwitterFeedReader";
 import MediumFeedReader from "./rss/MediumFeedReader";
-import { URL } from "url";
 import ApiV1BadRequestException from "../../../shared/exceptions/ApiV1BadRequestException";
 import ApiV1InternalErrorException from "../../../shared/exceptions/ApiV1InternalErrorException";
 import { RssPostSocialNetworks } from "./rss/type/RssPost";

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const toolClass = process.argv[2];
 
 try {

@@ -1,6 +1,6 @@
 export enum RssPostSocialNetworks {
-  twitter = 'Twitter',
-  medium = 'Medium',
+  twitter = "Twitter",
+  medium = "Medium",
 }
 
 export interface RssPostDefault {

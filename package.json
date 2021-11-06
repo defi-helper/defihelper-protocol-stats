@@ -4,10 +4,10 @@
   "scripts": {
     "build": "./node_modules/.bin/ts-node build.ts",
     "lint": "eslint . --ext .ts",
+    "prettier": "prettier ./src --write --ignore-unknown",
     "start": "node -r module-alias/register ./dist/backend --env=production",
     "start:dev": "nodemon",
-    "cli": "node ./dist/cli",
-    "cli-test": "npm run cli TestToolEcho"
+    "cli": "node ./dist/cli"
   },
   "nodemonConfig": {
     "watch": [
@@ -43,18 +43,22 @@
           "code": 100
         }
       ],
-      "no-console": 1,
+      "no-console": 0,
       "no-extra-boolean-cast": 0,
       "@typescript-eslint/restrict-plus-operands": 0,
       "@typescript-eslint/explicit-module-boundary-types": 0,
       "@typescript-eslint/no-explicit-any": 0,
       "@typescript-eslint/no-floating-promises": 0,
       "@typescript-eslint/no-unsafe-member-access": 0,
-      "@typescript-eslint/no-unsafe-assignment": 0
+      "@typescript-eslint/no-unsafe-assignment": 0,
+      "@typescript-eslint/no-unsafe-return": 0,
+      "@typescript-eslint/no-misused-promises": 0,
+      "@typescript-eslint/ban-ts-comment": 0
     }
   },
   "eslintIgnore": [
     "src/backend/public/",
+    "src/cli/index.ts",
     "build.ts"
   ],
   "dependencies": {
@@ -94,6 +98,7 @@
     "fs-extra": "^10.0.0",
     "jasmine": "^3.9.0",
     "nodemon": "^2.0.13",
+    "prettier": "^2.4.1",
     "supertest": "^6.1.6",
     "ts-node": "^10.3.0",
     "tsconfig-paths": "^3.11.0",

@@ -1,3 +1,3 @@
 import Telegram from "./Telegram";
 
-export {Telegram, };
+export { Telegram };

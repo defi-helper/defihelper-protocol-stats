@@ -1,5 +1,5 @@
-import {RssPostDefault} from './RssPost';
+import { RssPostDefault } from "./RssPost";
 
 export default interface RssFeedReaderDefault {
-  read(username: string): Promise<RssPostDefault[]>
+  read(username: string): Promise<RssPostDefault[]>;
 }

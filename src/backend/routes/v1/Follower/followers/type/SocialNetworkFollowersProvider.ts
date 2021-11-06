@@ -1,8 +1,8 @@
 export interface SocialNetworkEntityDefault {
-  anotherProperty: string|null;
+  anotherProperty: string | null;
   followers: number;
 }
 
 export default interface SocialNetworkFollowersProvider {
-  get(id: string|number): Promise<SocialNetworkEntityDefault>
+  get(id: string | number): Promise<SocialNetworkEntityDefault>;
 }

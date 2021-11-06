@@ -1,3 +1,3 @@
-export default async () => {
-  console.log('This is test echo tool');
+export default () => {
+  console.log("This is test echo tool");
 };
