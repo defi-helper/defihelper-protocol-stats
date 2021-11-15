@@ -18,7 +18,7 @@ logger.timestamp = false;
         // Copy front-end files
 
         // todo await copy('./src/backend/public', './dist/public');
-        await copy('./src/backend/views', './dist/views');
+        await copy('./src/backend/views', './dist/backend/views');
         // Copy production env file
         await copy('./.env', './dist/.env');
         // Copy back-end files
