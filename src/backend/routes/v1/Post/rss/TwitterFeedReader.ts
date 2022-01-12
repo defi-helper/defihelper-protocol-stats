@@ -21,7 +21,12 @@ export default class implements RssFeedReaderDefault {
 
     const response: any = (await axios.get(requestUrl, { params })).data;
     if (response.success !== true) {
-      throw "fetchrss.com: unsuccessful"; //todo add reason here
+      const message = response.error?.message;
+      if (message) {
+        throw `fetchrss.com: ${message}`;
+      }
+
+      throw "fetchrss.com: unsuccessful, unable to resolve error message";
     }
 
     return response;
