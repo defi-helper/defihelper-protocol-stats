@@ -6,7 +6,9 @@ export default class implements RssFeedReaderDefault {
   async read(username: string): Promise<RssPostDefault[]> {
     const parser: Parser = new Parser();
 
-    const feed = await parser.parseURL(`https://${username}.medium.com/feed`);
+    const feed = await parser.parseURL(
+      `https://medium.com/@${username.replace("@", "")}/feed`
+    );
     return feed.items.map((v) => {
       return {
         socialNetwork: RssPostSocialNetworks.medium,
