@@ -51,7 +51,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: configuration
-          ConfigMap:
+          secret:
             secretName: config-secrets
       {{- with .Values.nodeSelector }}
       nodeSelector:
