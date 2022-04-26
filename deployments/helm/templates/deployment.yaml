@@ -30,6 +30,10 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "/bin/sh","-c","ln -s /app/configuration/.env /app/.env" ]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -44,7 +48,7 @@ spec:
               path: /
               port: http
           volumeMounts:
-            - mountPath: /app/.env
+            - mountPath: /app/configuration
               name: configuration
               readOnly: true
           resources:
