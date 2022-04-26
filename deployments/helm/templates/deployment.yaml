@@ -43,8 +43,16 @@ spec:
             httpGet:
               path: /
               port: http
+          volumeMounts:
+            - mountPath: /app/.env
+              name: configuration
+              readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: configuration
+          ConfigMap:
+            secretName: config-secrets
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
