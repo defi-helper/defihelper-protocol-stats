@@ -3,7 +3,9 @@ import app from "./Server";
 import logger from "./shared/Logger";
 
 // Start the server
-const port = Number(process.env.PORT || 3000);
+const port = Number(process.env.PORT || 8080);
 app.listen(port, () => {
   logger.info("Express server started on port: " + port);
+  logger.info("Var test: " + process.env.TELEGRAM_BOT_TOKEN);
 });
+
