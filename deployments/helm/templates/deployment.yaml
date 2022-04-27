@@ -33,7 +33,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: [ "/bin/sh","-c","cp /app/configuration/.env /app/dist/.env" ]
+                command: [ "/bin/sh","-c","cp /app/configuration/.env /app/.env" ]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
