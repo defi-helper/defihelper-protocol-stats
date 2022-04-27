@@ -15,5 +15,4 @@ WORKDIR /app
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 EXPOSE 8080
-CMD [ "/bin/sh","-c","cp /app/configuration/.env /app/.env"]
-CMD [ "node", "./dist/backend"]
+CMD "ln -s ./configuration/.env ./.env && node ./dist/backend"
