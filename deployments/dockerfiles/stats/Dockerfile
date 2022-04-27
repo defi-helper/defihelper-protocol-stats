@@ -2,9 +2,6 @@ FROM node:16-alpine AS build
 
 WORKDIR /app
 
-ARG TELEGRAM_BOT_TOKEN
-ARG FETCH_RSS_COM_TOKEN
-
 ARG NODE_ENV
 ENV NODE_ENV ${NODE_ENV:-production}
 
