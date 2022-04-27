@@ -15,4 +15,5 @@ WORKDIR /app
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 EXPOSE 8080
-CMD "ln -s /app/configuration/.env /app/.env && sleep 50000"
+
+CMD [ "/bin/sh","-c","ln -s ./configuration/.env ./.env && node ./dist/backend"]
