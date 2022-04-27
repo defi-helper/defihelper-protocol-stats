@@ -25,15 +25,15 @@ spec:
       serviceAccountName: {{ include "website.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          command: [ "/bin/sh","-c","cp /app/configuration/.env /app/.env" ]
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          lifecycle:
-            postStart:
-              exec:
-                command: [ "/bin/sh","-c","cp /app/configuration/.env /app/.env" ]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
