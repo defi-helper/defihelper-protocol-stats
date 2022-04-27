@@ -29,6 +29,10 @@ spec:
         - name: "{{ .Chart.Name }}-init"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           command: [ "/bin/sh","-c","cp /app/configuration/.env /app/.env" ]
+          volumeMounts:
+            - mountPath: /app/configuration
+              name: configuration
+              readOnly: true
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
