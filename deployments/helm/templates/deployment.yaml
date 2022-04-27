@@ -47,6 +47,9 @@ spec:
             httpGet:
               path: /
               port: http
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 5
           volumeMounts:
             - mountPath: /app/configuration
               name: configuration
