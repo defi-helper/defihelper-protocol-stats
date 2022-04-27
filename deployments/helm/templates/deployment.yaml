@@ -30,10 +30,6 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-#          lifecycle:
-#            postStart:
-#              exec:
-#                command: [ "/bin/sh","-c","cp /app/configuration/.env /app/.env" ]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -46,8 +42,11 @@ spec:
             initialDelaySeconds: 15
             timeoutSeconds: 1
           readinessProbe:
-            exec:
-              command: [ "/bin/sh","-c","cp /app/configuration/.env /app/.env" ]
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
           volumeMounts:
             - mountPath: /app/configuration
               name: configuration
