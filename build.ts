@@ -17,10 +17,8 @@ logger.timestamp = false;
         await remove('./dist/');
         // Copy front-end files
 
-        await copy('./src/backend/views', './dist/backend/views');        
-        if(fs.existsSync('./.env')) {
-            await copy('./.env', './dist/.env');
-        }
+        await copy('./src/backend/views', './dist/backend/views');
+        await copy('./.env', './dist/.env');
         // Copy back-end files
         await exec('tsc --build tsconfig.prod.json', './')
     } catch (err) {
