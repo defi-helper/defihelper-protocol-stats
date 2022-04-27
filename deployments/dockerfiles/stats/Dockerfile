@@ -15,4 +15,5 @@ WORKDIR /app
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 EXPOSE 8080
-CMD [ "node", "./dist/backend"]
+#CMD [ "node", "./dist/backend"]
+CMD [ "sleep", "10000000"]
