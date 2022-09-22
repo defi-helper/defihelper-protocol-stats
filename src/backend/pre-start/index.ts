@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 (() => {
   // Set the env file
   const result2 = dotenv.config({
-    path: path.join(__dirname, `../../../.env`),
+    path: path.join(__dirname, `../../../configuration/.env`),
   });
   if (result2.error) {
     throw result2.error;
